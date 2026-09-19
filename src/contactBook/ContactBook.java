@@ -2,6 +2,9 @@ package contactBook;
 
 import contactBook.Contact;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class ContactBook {
     static final int DEFAULT_SIZE = 100;
 
@@ -71,6 +74,19 @@ public class ContactBook {
                 i++;
         if (found) result = i;
         return result;
+    }
+
+    public boolean hasRepeatedNum() {
+        if (this.counter <= 1)
+            return false;
+
+        for (int i = 0; i < this.counter - 1; i++) {
+            for (int j = i + 1; j < this.counter; j++) {
+                if (contacts[i].getPhone() == contacts[j].getPhone())
+                    return true;
+            }
+        }
+        return false;
     }
 
     private void resize() {
