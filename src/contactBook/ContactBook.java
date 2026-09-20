@@ -65,20 +65,25 @@ public class ContactBook {
 
 
     public String getNumber(int number){
-        return contacts[searchNumber(number)].getName();
+        int index = searchNumber(number);
+
+        if (index == -1)
+            return null;
+
+        return contacts[index].getName();
     }
 
     private int searchNumber(int number) {
         int i = 0;
-        int result = -1;
-        boolean found = false;
-        while (i<counter && !found)
-            if (contacts[i].getPhone() == number )
-                found = true;
-            else
-                i++;
-        if (found) result = i;
-        return result;
+
+        while (i < counter) {
+            if (contacts[i].getPhone() == number)
+                return i;
+
+            i++;
+        }
+
+        return -1;
     }
 
 
